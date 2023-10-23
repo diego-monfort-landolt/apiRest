@@ -8,7 +8,7 @@ const parseComment = (commentFromRequest: any): string => {
 }
 
 const parseDate = (dateFromRequest: any): string => {
-  if (!isString(date) || !isDate(date)) {
+  if (!isString(dateFromRequest) || !isDate(dateFromRequest)) {
     throw new Error('incorect missing Date')
   }
   return dateFromRequest
@@ -23,7 +23,8 @@ const isDate = (date: string) : boolean => {
 
 const toNewDiaryEntry = (object: any): newDiaryEntry => {
   const newEntry: newDiaryEntry = {
-    comment: parseComment(object.comment)
+    comment: parseComment(object.comment),
+    date: parseDate(object.comment),
     // ...
   }
 
