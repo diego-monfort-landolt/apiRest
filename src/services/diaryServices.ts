@@ -14,7 +14,6 @@ export const findById = (id: number): NonSensitiveInfoDiaryEntry | undefined => 
  return undefined
 }
 
-
 export const getEntriesWithoutSensitiveInfo = (): NonSensitiveInfoDiaryEntry[] => {
   return diaries.map(({id, date, weather, visibility}) => {
     return {
@@ -25,7 +24,6 @@ export const getEntriesWithoutSensitiveInfo = (): NonSensitiveInfoDiaryEntry[] =
     }
   })
 }
-
 
 export const addDiary = (newDiaryEntry: newDiaryEntry): DiaryEntry => {
   const newDiary = {
