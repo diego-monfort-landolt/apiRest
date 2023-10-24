@@ -20,8 +20,16 @@ const parseWeather = (weatherFromRequest: any): Weather => {
   }
 return weatherFromRequest
 }
-const isWeather = (string: string): Weather => {
-  return ['sunny', 'rainy', 'cloudy', 'windy', 'stormy'].includes(string)
+
+const parseVisibility = (visibilityFromRequest: any): Visibility => {
+  if (!isString(visibilityFromRequest) || !isVisibility(visibilityFromRequest)) {
+
+    throw new Error('Incorrect or missing Visibility')
+  }
+  return visibilityFromRequest
+}
+const isWeather = (param: any): boolean => {
+  return Object.values(Weather).includes(param)
 }
 
 const isString = (string: string): boolean => {
@@ -30,11 +38,16 @@ const isString = (string: string): boolean => {
 const isDate = (date: string) : boolean => {
   return Boolean(Date.parse(date))
 }
+const isVisibility = (param: any): boolean => {
+  return Object.values(Visibility).includes(param)
+}
 
 const toNewDiaryEntry = (object: any): newDiaryEntry => {
   const newEntry: newDiaryEntry = {
     comment: parseComment(object.comment),
     date: parseDate(object.comment),
+    weather: parseWeather(object.weather),
+    visibility: parseVisibility(object.visibility),
     // ...
   }
 
